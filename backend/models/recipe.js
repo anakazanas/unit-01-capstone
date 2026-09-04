@@ -13,20 +13,18 @@ const instructionSchema = new mongoose.Schema({
 const recipeSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
-    description: { type: String },
-    image: { type: String },
-    ingredients: [ingredientSchema],
-    instructions: [instructionSchema],
+    ingredients: [{ type: String, required: true }],
+    instructions: { type: String, required: true },
     tags: [String],
+    image: { type: String },
     ownerId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
   },
-  {
-    timestamps: true,
-  },
+  { timestamps: true },
 );
+
 
 module.exports = mongoose.model("Recipe", recipeSchema);

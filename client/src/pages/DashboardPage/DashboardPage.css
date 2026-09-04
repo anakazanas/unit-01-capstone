@@ -1,0 +1,41 @@
+.dashboard-page { 
+    padding: 24px; 
+    max-width: 900px; 
+    margin: 0 
+    auto; }
+
+.dashboard-page h2 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 40px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+.dashboard-welcome { 
+    color: var(--color-neutral-400); 
+    margin-bottom: 16px; 
+}
+
+.empty-recipes-box { 
+    border: 1px dashed var(--color-neutral-300); 
+    border-radius: 8px; 
+    padding: 40px; text-align: center; 
+    color: var(--color-neutral-400); 
+    margin-bottom: 16px; 
+}
+
+.recipe-grid { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 16px; 
+    margin-bottom: 16px; 
+}
+
+.browse-link { 
+    display: block; 
+    margin-top: 10px; 
+    color: var(--color-green-400); 
+    text-decoration: none; 
+    font-weight: 600; 
+}

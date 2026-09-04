@@ -1,0 +1,13 @@
+.recipes-page { max-width: 500px; margin: 0 auto; padding: 24px; }
+.breadcrumb { font-size: 13px; color: var(--color-green-400); margin-bottom: 4px; }
+.breadcrumb a { color: var(--color-green-400); text-decoration: none; }
+.recipes-search { width: 100%; padding: 8px; margin: 12px 0 20px; border: 1px solid var(--color-neutral-300); border-radius: 6px; box-sizing: border-box; }
+.recipes-list { display: flex; flex-direction: column; gap: 16px; }
+.no-recipes-message { text-align: center; color: var(--color-neutral-400); margin-top: 40px; }
+
+.recipes-list .recipe-card {
+  max-width: none;
+}
+.recipes-list .recipe-card-image {
+  height: 160px;
+}

@@ -24,14 +24,9 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-userSchema.pre('save', function(next) {
-    const user = this;
-    if (!user.isModified('password')) return next();
-    bcrypt.hash(user.password, SALT_ROUNDS, function(err, hash) {
-        if (err) return next(err);
-        user.password = hash;
-        next();
-    });
+userSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
+  this.password = await bcrypt.hash(this.password, SALT_ROUNDS);
 });
 
 userSchema.methods.comparePassword = function(tryPassword, cb) {

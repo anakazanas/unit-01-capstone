@@ -1,0 +1,6 @@
+.profile-page { max-width: 400px; margin: 40px auto; }
+.breadcrumb { font-size: 13px; color: var(--color-green-400); }
+.breadcrumb a { color: var(--color-green-400); text-decoration: none; }
+.profile-form { text-align: left; margin-top: 16px; }
+.profile-input { width: 100%; padding: 10px; margin: 6px 0 14px; border: 1px solid var(--color-neutral-300); border-radius: 6px; }
+.delete-account-link { text-align: center; color: var(--color-red-300); margin-top: 16px; cursor: pointer; font-size: 14px; }
