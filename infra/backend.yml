@@ -1,0 +1,58 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Spoonful capstone backend - EC2 + Docker Compose (API + Mongo)
+
+Parameters:
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: Name of an existing EC2 KeyPair to enable SSH access
+
+Mappings:
+  Net:
+    IDs:
+      VpcId: vpc-004b90963574c007d
+      SubnetId: subnet-0f30bf33e7c64e689
+
+Resources:
+  BackendSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow SSH and API traffic
+      VpcId: !FindInMap [Net, IDs, VpcId]
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 3000
+          ToPort: 3000
+          CidrIp: 0.0.0.0/0
+
+  BackendInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.medium
+      KeyName: !Ref KeyName
+      SubnetId: !FindInMap [Net, IDs, SubnetId]
+      SecurityGroupIds:
+        - !Ref BackendSecurityGroup
+      ImageId: '{{resolve:ssm:/aws/service/canonical/ubuntu/server/22.04/stable/current/amd64/hvm/ebs-gp2/ami-id}}'
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          apt-get update -y
+          apt-get install -y docker.io docker-compose-plugin git
+          systemctl enable docker
+          systemctl start docker
+          cd /home/ubuntu
+          git clone https://github.com/anakazanas/unit-01-capstone.git
+          cd unit-01-capstone/backend
+          docker compose -f docker-compose.dev.yml up --build -d
+
+Outputs:
+  ApiURL:
+    Description: Public URL of the deployed API
+    Value: !Sub "http://${BackendInstance.PublicDnsName}:3000"
+  PublicDNS:
+    Description: Public DNS name of the instance
+    Value: !GetAtt BackendInstance.PublicDnsName
