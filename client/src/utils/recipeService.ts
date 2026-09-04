@@ -1,7 +1,7 @@
 import axios from "axios";
 import tokenService from "./tokenService";
 
-const BASE_URL = "/api/recipes";
+const BASE_URL = `${import.meta.env.VITE_API_URL}/api/recipes`;
 
 function authHeaders() {
   const token = tokenService.getToken();

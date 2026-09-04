@@ -32,11 +32,18 @@ function RecipeForm({ initialData, onSubmit, onCancel, submitLabel = "Save" }: R
     <form onSubmit={handleSubmit} className="recipe-form">
       <h2>Create a Recipe</h2>
 
-      <label>Title</label>
-      <input value={title} onChange={(e) => setTitle(e.target.value)} required className="recipe-input" />
+      <label htmlFor="recipe-title">Title</label>
+      <input
+        id="recipe-title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        required
+        className="recipe-input"
+      />
 
-      <label>Ingredients</label>
+      <label htmlFor="recipe-ingredients">Ingredients</label>
       <textarea
+        id="recipe-ingredients"
         value={ingredients}
         onChange={(e) => setIngredients(e.target.value)}
         placeholder="1 Tbsp Olive Oil, 1 Onion, 2 Cloves Garlic..."
@@ -44,8 +51,9 @@ function RecipeForm({ initialData, onSubmit, onCancel, submitLabel = "Save" }: R
         className="recipe-textarea"
       />
 
-      <label>Instructions</label>
+      <label htmlFor="recipe-instructions">Instructions</label>
       <textarea
+        id="recipe-instructions"
         value={instructions}
         onChange={(e) => setInstructions(e.target.value)}
         placeholder="Saute onions in garlic. Add chickpeas and tomatoes, simmer for 20 mins."
@@ -53,15 +61,16 @@ function RecipeForm({ initialData, onSubmit, onCancel, submitLabel = "Save" }: R
         className="recipe-textarea"
       />
 
-      <label>Tags</label>
+      <label htmlFor="recipe-tags">Tags</label>
       <input
+        id="recipe-tags"
         value={tags}
         onChange={(e) => setTags(e.target.value)}
         placeholder="Vegan, Gluten Free, Dinner"
         className="recipe-input"
       />
 
-      <label>Image</label>
+      <label htmlFor="recipe-image">Image</label>
       {image && !showImageInput ? (
         <div className="recipe-image-box">
           <img src={image} alt="Preview" className="recipe-image-preview" />
@@ -81,6 +90,7 @@ function RecipeForm({ initialData, onSubmit, onCancel, submitLabel = "Save" }: R
       ) : (
         <div className="recipe-image-box recipe-image-box-empty">
           <input
+            id="recipe-image"
             value={image}
             onChange={(e) => setImage(e.target.value)}
             placeholder="+ Add Image (paste a link)"

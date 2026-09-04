@@ -2,7 +2,7 @@ import axios from "axios";
 import tokenService from "./tokenService";
 import type { User } from "../shared.types";
 
-const BASE_URL = "/api/users/";
+const BASE_URL = `${import.meta.env.VITE_API_URL}/api/users/`;
 
 async function getProfile() {
   const token = tokenService.getToken();
